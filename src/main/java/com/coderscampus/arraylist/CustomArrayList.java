@@ -1,9 +1,14 @@
 package com.coderscampus.arraylist;
 
 public class CustomArrayList<T> implements CustomList<T> {
+    private Object[] backingArray = new Object[10];
+    private int size = 0;
+
     @Override
     public boolean add(T item) {
-        return false;
+        backingArray[size] = item;
+        size++;
+        return true;
     }
 
     @Override

@@ -17,6 +17,13 @@ class CustomArrayListTest {
     // Assert - expected behavior/actual behavior
     @Test
     void add() {
+        // Arrange
+        CustomList<Integer> sut = new CustomArrayList<>();
+        // Act
+        sut.add(13);
+        Integer expectedValue = sut.get(0);
+        // Assert
+        assertEquals(13,expectedValue);
     }
 
     @Test
