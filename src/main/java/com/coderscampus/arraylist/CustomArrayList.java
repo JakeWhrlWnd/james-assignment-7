@@ -23,7 +23,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        return null;
+        return (T) backingArray[index];
     }
 
     @Override

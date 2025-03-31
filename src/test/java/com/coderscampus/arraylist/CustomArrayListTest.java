@@ -28,17 +28,21 @@ class CustomArrayListTest {
 
     @Test
     void testAdd() {
+        fail("Not yet implemented");
     }
 
     @Test
     void getSize() {
+        fail("Not yet implemented");
     }
 
     @Test
     void get() {
+        fail("Not yet implemented");
     }
 
     @Test
     void remove() {
+        fail("Not yet implemented");
     }
 }
