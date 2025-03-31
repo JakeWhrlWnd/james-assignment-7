@@ -1,5 +1,6 @@
 package com.coderscampus.arraylist;
 
+import com.coderscampus.arraylist.domain.CustomArrayList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

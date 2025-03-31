@@ -1,4 +1,6 @@
-package com.coderscampus.arraylist;
+package com.coderscampus.arraylist.domain;
+
+import com.coderscampus.arraylist.CustomList;
 
 public class CustomArrayList<T> implements CustomList<T> {
     private Object[] backingArray = new Object[10];
