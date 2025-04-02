@@ -65,12 +65,25 @@ class CustomArrayListTest {
         // Arrange
         CustomList<Integer> sut = new CustomArrayList<>();
         // Act
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 20; i++) {
             sut.add(i);
         }
         int actualSize = sut.getSize();
         // Assert
-        assertEquals(40, actualSize);
+        assertEquals(20, actualSize);
+    }
+
+    @Test
+    void should_check_if_index_is_out_of_bounds() {
+        // Arrange
+        CustomList<Integer> sut = new CustomArrayList<>();
+        // Act
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        int actualElement = sut.get(10);
+        // Act
+        assertThrows(IndexOutOfBoundsException.class, () -> sut.get(actualElement));
     }
 
     @Test

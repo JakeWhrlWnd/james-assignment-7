@@ -9,10 +9,13 @@ public class CustomArrayList<T> implements CustomList<T> {
     @Override
     public boolean add(T item) {
         if (size == backingArray.length) {
-            backingArray = new Object[backingArray.length * 2];
+            Object[] newBackingArray = new Object[backingArray.length * 2];
+            for (int i = 0; i < backingArray.length; i++) {
+                newBackingArray[i] = backingArray[i];
+            }
+            backingArray = newBackingArray;
         }
-        backingArray[size] = item;
-        size++;
+        backingArray[size++] = item;
         return true;
     }
 
@@ -27,7 +30,10 @@ public class CustomArrayList<T> implements CustomList<T> {
     }
 
     @Override
-    public T get(int index) throws IndexOutOfBoundsException {
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Oops, looks like the index: " + index + " is out of bounds for the array of size: " + size);
+        }
         return (T) backingArray[index];
     }
 
