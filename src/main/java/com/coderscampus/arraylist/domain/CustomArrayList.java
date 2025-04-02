@@ -8,6 +8,9 @@ public class CustomArrayList<T> implements CustomList<T> {
 
     @Override
     public boolean add(T item) {
+        if (size == backingArray.length) {
+            backingArray = new Object[backingArray.length * 2];
+        }
         backingArray[size] = item;
         size++;
         return true;
@@ -20,7 +23,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 
     @Override
     public int getSize() {
-        return 0;
+        return size;
     }
 
     @Override

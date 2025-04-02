@@ -17,14 +17,60 @@ class CustomArrayListTest {
     // Act - calling the method
     // Assert - expected behavior/actual behavior
     @Test
-    void add() {
+    void should_add_one_element_to_the_arraylist() {
         // Arrange
         CustomList<Integer> sut = new CustomArrayList<>();
         // Act
         sut.add(13);
-        Integer expectedValue = sut.get(0);
+        int actualElement = sut.get(0);
+        int actualSize = sut.getSize();
         // Assert
-        assertEquals(13,expectedValue);
+        assertEquals(13, actualElement);
+        assertEquals(1, actualSize);
+    }
+
+    @Test
+    void should_add_ten_elements_to_the_arraylist() {
+        // Arrange
+        CustomList<Integer> sut = new CustomArrayList<>();
+        // Act
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        int actualSize = sut.getSize();
+        // Assert
+        for (int i = 0; i < sut.getSize(); i++) {
+            assertEquals(i, sut.get(i));
+        }
+        assertEquals(10, actualSize);
+    }
+
+    @Test
+    void should_add_more_than_ten_elements_to_the_arraylist() {
+        // Arrange
+        CustomList<Integer> sut = new CustomArrayList<>();
+        // Act
+        for (int i = 0; i < 20; i++) {
+            sut.add(i);
+        }
+        int actualElement = sut.get(19);
+        int actualSize = sut.getSize();
+        // Assert
+        assertEquals(19, actualElement);
+        assertEquals(20, actualSize);
+    }
+
+    @Test
+    void should_double_the_size_of_the_arraylist() {
+        // Arrange
+        CustomList<Integer> sut = new CustomArrayList<>();
+        // Act
+        for (int i = 0; i < 40; i++) {
+            sut.add(i);
+        }
+        int actualSize = sut.getSize();
+        // Assert
+        assertEquals(40, actualSize);
     }
 
     @Test
