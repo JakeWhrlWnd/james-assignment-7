@@ -20,6 +20,12 @@ public class CustomArrayList<T> implements CustomList<T> {
         }
     }
 
+    private void indexOutOfBoundsCheckForAdd(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Oops, looks like the index: " + index + " is out of bounds for the array of size: " + size);
+        }
+    }
+
     @Override
     public boolean add(T item) {
         ensureCapacity();
@@ -29,7 +35,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 
     @Override
     public boolean add(int index, T item) throws IndexOutOfBoundsException {
-        indexOutOfBoundsCheck(index);
+        indexOutOfBoundsCheckForAdd(index);
         ensureCapacity();
         for (int i = size - 1; i >= index; i--) {
             backingArray[i + 1] = backingArray[i];

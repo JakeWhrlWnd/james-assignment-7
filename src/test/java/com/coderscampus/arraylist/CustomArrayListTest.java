@@ -6,90 +6,101 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CustomArrayListTest {
-    // Test-Driven Development Methodology
-    // Step 1 - Write a failing test
-    // Step 2 - Write the business logic to make the test pass
-    // Step 3 - Refactor your code
-    // Rinse and repeat Steps 1 - 3
 
-    // Three A's - "ARRANGE, ACT, ASSERT"
-    // Arrange - set things up
-    // Act - calling the method
-    // Assert - expected behavior/actual behavior
     @Test
     void add_givenValidItem_addsItem() {
         CustomList<Integer> sut = new CustomArrayList<>();
         sut.add(13);
-        int expectedItem = 13;
-        int actualItem = sut.get(0);
-        assertEquals(expectedItem, actualItem);
+        assertEquals(13, sut.get(0));
     }
 
     @Test
     void add_givenValidItem_incrementsSize() {
         CustomList<Integer> sut = new CustomArrayList<>();
         sut.add(13);
-        int expectedSize = 1;
-        int actualSize = sut.getSize();
-        assertEquals(expectedSize, actualSize);
+        assertEquals(1, sut.getSize());
     }
 
     @Test
-    void should_add_ten_elements_to_the_arraylist() {
-        // Arrange
+    void add_givenInitialCapacity_addsInitialCapacity() {
         CustomList<Integer> sut = new CustomArrayList<>();
-        // Act
         for (int i = 0; i < 10; i++) {
             sut.add(i);
         }
-        int actualSize = sut.getSize();
-        // Assert
-        for (int i = 0; i < sut.getSize(); i++) {
+        assertEquals(10, sut.getSize());
+    }
+
+    @Test
+    void add_givenMoreThanInitialCapacity_addsToInitialCapacity() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            sut.add(i);
+        }
+        assertEquals(20, sut.getSize());
+        for (int i = 0; i < 20; i++) {
             assertEquals(i, sut.get(i));
         }
-        assertEquals(10, actualSize);
     }
 
     @Test
-    void should_add_more_than_ten_elements_to_the_arraylist() {
-        // Arrange
+    void add_givenMoreThanInitialCapacity_triggersResize() {
         CustomList<Integer> sut = new CustomArrayList<>();
-        // Act
         for (int i = 0; i < 20; i++) {
             sut.add(i);
         }
-        int actualElement = sut.get(19);
-        int actualSize = sut.getSize();
-        // Assert
-        assertEquals(19, actualElement);
-        assertEquals(20, actualSize);
-    }
-
-    @Test
-    void should_double_the_size_of_the_arraylist() {
-        // Arrange
-        CustomList<Integer> sut = new CustomArrayList<>();
-        // Act
+        assertEquals(20, sut.getSize());
         for (int i = 0; i < 20; i++) {
-            sut.add(i);
+            assertEquals(i, sut.get(i));
         }
-        int actualSize = sut.getSize();
-        // Assert
-        assertEquals(20, actualSize);
     }
 
     @Test
-    void should_check_if_index_is_out_of_bounds() {
-        // Arrange
+    void add_givenValidIndex_addsItem() {
         CustomList<Integer> sut = new CustomArrayList<>();
-        // Act
         for (int i = 0; i < 10; i++) {
             sut.add(i);
         }
-        sut.add(10, 15);
-        int actualElement = sut.get(10);
-        // Act
-//        assertThrows();
+        sut.add(2,13);
+        assertEquals(13, sut.get(2));
+    }
+
+    @Test
+    void add_givenValidIndex_addsItemToTheBeginning() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        sut.add(0,13);
+        assertEquals(13, sut.get(0));
+    }
+
+    @Test
+    void add_givenValidIndex_addsItemToTheMiddle() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        sut.add(5,13);
+        assertEquals(13, sut.get(5));
+    }
+
+    @Test
+    void add_givenValidIndex_addsItemToTheEnd() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        sut.add(10,13);
+        assertEquals(13, sut.get(10));
+    }
+
+    @Test
+    void add_givenInvalidIndex_throwsIndexOutOfBoundsException() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        assertThrows(IndexOutOfBoundsException.class, () -> sut.add(11,13));
     }
 
     @Test
@@ -104,11 +115,6 @@ class CustomArrayListTest {
         int expectedElement = sut.remove(4);
         // Act
         assertEquals(expectedElement, actualElement);
-    }
-
-    @Test
-    void testAdd() {
-        fail("Not yet implemented");
     }
 
     @Test
