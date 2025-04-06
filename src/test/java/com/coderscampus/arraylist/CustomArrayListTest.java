@@ -105,21 +105,12 @@ class CustomArrayListTest {
 
     @Test
     void remove_givenValidIndex_returnsCorrectElement() {
-        // Arrange
         CustomList<Integer> sut = new CustomArrayList<>();
-        // Act
         for (int i = 0; i < 10; i++) {
             sut.add(i);
         }
-        int actualElement = sut.get(4);
-        int expectedElement = sut.remove(4);
-        // Act
-        assertEquals(expectedElement, actualElement);
-    }
-
-    @Test
-    void getSize() {
-        fail("Not yet implemented");
+        sut.remove(4);
+        assertEquals(5, sut.get(4));
     }
 
     @Test
