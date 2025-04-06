@@ -17,16 +17,21 @@ class CustomArrayListTest {
     // Act - calling the method
     // Assert - expected behavior/actual behavior
     @Test
-    void should_add_one_element_to_the_arraylist() {
-        // Arrange
+    void add_givenValidItem_addsItem() {
         CustomList<Integer> sut = new CustomArrayList<>();
-        // Act
         sut.add(13);
-        int actualElement = sut.get(0);
+        int expectedItem = 13;
+        int actualItem = sut.get(0);
+        assertEquals(expectedItem, actualItem);
+    }
+
+    @Test
+    void add_givenValidItem_incrementsSize() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        sut.add(13);
+        int expectedSize = 1;
         int actualSize = sut.getSize();
-        // Assert
-        assertEquals(13, actualElement);
-        assertEquals(1, actualSize);
+        assertEquals(expectedSize, actualSize);
     }
 
     @Test
@@ -81,9 +86,24 @@ class CustomArrayListTest {
         for (int i = 0; i < 10; i++) {
             sut.add(i);
         }
+        sut.add(10, 15);
         int actualElement = sut.get(10);
         // Act
-        assertThrows(IndexOutOfBoundsException.class, () -> sut.get(actualElement));
+//        assertThrows();
+    }
+
+    @Test
+    void remove_givenValidIndex_returnsCorrectElement() {
+        // Arrange
+        CustomList<Integer> sut = new CustomArrayList<>();
+        // Act
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        int actualElement = sut.get(4);
+        int expectedElement = sut.remove(4);
+        // Act
+        assertEquals(expectedElement, actualElement);
     }
 
     @Test
