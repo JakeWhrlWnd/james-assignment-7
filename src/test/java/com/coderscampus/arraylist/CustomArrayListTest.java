@@ -104,6 +104,15 @@ class CustomArrayListTest {
     }
 
     @Test
+    void get_givenInvalidIndex_throwsIndexOutOfBoundsException() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        assertThrows(IndexOutOfBoundsException.class, () -> sut.get(-1));
+    }
+
+    @Test
     void remove_givenValidIndex_returnsCorrectElement() {
         CustomList<Integer> sut = new CustomArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -114,12 +123,51 @@ class CustomArrayListTest {
     }
 
     @Test
-    void get() {
-        fail("Not yet implemented");
+    void remove_givenValidIndex_decrementsSize() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        sut.remove(5);
+        assertEquals(9, sut.getSize());
     }
 
     @Test
-    void remove() {
-        fail("Not yet implemented");
+    void remove_givenValidIndex_removesFromTheBeginning() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        sut.remove(0);
+        assertEquals(1, sut.get(0));
+    }
+
+    @Test
+    void remove_givenValidIndex_removesFromTheMiddle() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        sut.remove(5);
+        assertEquals(6, sut.get(5));
+    }
+
+    @Test
+    void remove_givenValidIndex_removesFromTheEnd() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        sut.remove(8);
+        assertEquals(9, sut.get(8));
+    }
+
+    @Test
+    void remove_givenInvalidIndex_throwsIndexOutOfBoundsException() {
+        CustomList<Integer> sut = new CustomArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            sut.add(i);
+        }
+        assertThrows(IndexOutOfBoundsException.class, () -> sut.remove(10));
     }
 }
